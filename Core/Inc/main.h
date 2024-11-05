@@ -41,6 +41,7 @@ typedef enum
    
 }led_color_typedef;
 
+extern uint8_t ledStatus[6];
 
 void Error_Handler(void);
 

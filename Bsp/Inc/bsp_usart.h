@@ -23,5 +23,7 @@ void DMA_Init(void);
 void USART1_UART_Init(void);
 void USART2_UART_Init(void);
 
+void bsp_usartInit(void);
+
 #endif
 

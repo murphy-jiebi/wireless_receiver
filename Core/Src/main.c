@@ -23,10 +23,10 @@
 #include "bsp_gpio.h"
 #include "bsp_adc.h"
 #include "bsp_led.h"
+#include "lora.h"
 
 
 uint8_t ledStatus[6]={0};
-
 
 /**
   * @brief  The application entry point.
@@ -40,7 +40,8 @@ int main(void)
     bsp_InitGpio();
     LedInit();
     bsp_InitAdc();
-    
+    bsp_usartInit();
+    LoraInit();
     while (1)
     {
         LedRefresh(ledStatus);
