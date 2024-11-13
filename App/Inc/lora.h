@@ -51,9 +51,9 @@ typedef struct
     uint8_t txPower;
 }loraParam_typedef;
 
-
 void LoraInit(void);
 
+void loraSendData(uint8_t *buf,uint8_t len);
 
 #endif
 

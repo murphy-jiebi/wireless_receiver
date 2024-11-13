@@ -79,6 +79,15 @@
 #define READ_CH4_DET        ((CH4_DET_PORT->IDR & CH4_DET_PIN) != 0)
 #define READ_CH5_DET        ((CH5_DET_PORT->IDR & CH5_DET_PIN) != 0)
 #define READ_CH6_DET        ((CH6_DET_PORT->IDR & CH6_DET_PIN) != 0)
+
+#define READ_CH1_CTL        ((CH1_CTL_PORT->ODR & CH1_CTL_PIN) != 0)
+#define READ_CH2_CTL        ((CH2_CTL_PORT->ODR & CH2_CTL_PIN) != 0)
+#define READ_CH3_CTL        ((CH3_CTL_PORT->ODR & CH3_CTL_PIN) != 0)
+#define READ_CH4_CTL        ((CH4_CTL_PORT->ODR & CH4_CTL_PIN) != 0)
+#define READ_CH5_CTL        ((CH5_CTL_PORT->ODR & CH5_CTL_PIN) != 0)
+#define READ_CH6_CTL        ((CH6_CTL_PORT->ODR & CH6_CTL_PIN) != 0)
+
+
 #define READ_LORA_AUX       ((LORA_AUX_PORT->IDR & LORA_AUX_PIN) != 0)
 
 #define PWR_CTL_EN          (PWR_CTL_PORT->BSRR = PWR_CTL_PIN)

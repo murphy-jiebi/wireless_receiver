@@ -33,3 +33,4 @@ receiver\lora.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 receiver\lora.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 receiver\lora.o: D:\keil5\ARM\ARMCC\Bin\..\include\string.h
 receiver\lora.o: ..\Bsp\Inc\bsp_gpio.h
+receiver\lora.o: ..\Bsp\Inc\delay.h

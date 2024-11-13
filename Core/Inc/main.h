@@ -22,15 +22,20 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 #include "string.h"
 
-
+typedef enum
+{
+    CH_NO_CON        =0,
+    CH_SELECT        =0x01,
+    CH_CONNECT       =0x02,
+    CH_FIRED         =0x03,
+    CH_FAULT         =0x04,
+}chStatus_enum_typedef;
 
 typedef enum 
 {
@@ -38,16 +43,16 @@ typedef enum
     LED_BLUE        =0x01,
     LED_GREEN       =0x02,
     LED_RED         =0x04,
+    LED_YELLOW      =0x06,
    
 }led_color_typedef;
 
-extern uint8_t ledStatus[6];
+extern uint8_t channelStatus[];
+extern uint8_t fireChannel[];
+extern uint8_t flagFire;
+
 
 void Error_Handler(void);
 
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* __MAIN_H */

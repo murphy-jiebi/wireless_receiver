@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Bsp\Inc;..\App\Inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Bsp\Inc;..\App\Inc;..\Task\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -397,11 +397,6 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
-            </File>
-            <File>
-              <FileName>tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/tim.c</FilePath>
             </File>
             <File>
               <FileName>stm32f1xx_it.c</FileName>
@@ -553,6 +548,11 @@
               <FileType>1</FileType>
               <FilePath>..\Bsp\Src\bsp_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Src\bsp_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -562,6 +562,26 @@
               <FileName>lora.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\Src\lora.c</FilePath>
+            </File>
+            <File>
+              <FileName>protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\Src\protocol.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Task</GroupName>
+          <Files>
+            <File>
+              <FileName>task_ctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Task\Src\task_ctrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_com.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Task\Src\task_com.c</FilePath>
             </File>
           </Files>
         </Group>

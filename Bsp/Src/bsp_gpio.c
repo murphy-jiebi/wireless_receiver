@@ -9,12 +9,12 @@ void bsp_InitGpio(void)
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
     
-	
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     
-    
+ /******************************** ‰≥ˆ********************************************************/   
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	  
     GPIO_InitStruct.Pin = PWR_CTL_PIN;
 	HAL_GPIO_Init(PWR_CTL_PORT, &GPIO_InitStruct);
     
@@ -53,7 +53,8 @@ void bsp_InitGpio(void)
     
     GPIO_InitStruct.Pin = LED_SDB_PIN;
 	HAL_GPIO_Init(LED_SDB_PORT, &GPIO_InitStruct);
-    
+
+/******************************** ‰»Î********************************************************/
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     
     GPIO_InitStruct.Pin = PWR_INT_PIN;
@@ -83,10 +84,28 @@ void bsp_InitGpio(void)
     GPIO_InitStruct.Pin = LORA_AUX_PIN;
 	HAL_GPIO_Init(LORA_AUX_PORT, &GPIO_InitStruct);
     
+    while(1)
+    {
+        if(!READ_PWR_INT)
+        {
+            HAL_Delay(1500);
+            if(!READ_PWR_INT)
+            {
+                break;
+            }
+        } 
+    }
+    
     PWR_CTL_EN;
     CH_PWR_EN;
     
     LED_RST_DIS;
     
+    CH1_CTL_DIS;
+    CH2_CTL_DIS;
+    CH3_CTL_DIS;
+    CH4_CTL_DIS;
+    CH5_CTL_DIS;
+    CH6_CTL_DIS;
 }
 

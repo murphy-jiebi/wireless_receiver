@@ -96,18 +96,18 @@ void LedSet(uint8_t ch,uint8_t *cmd,uint8_t len)
 
 void LedInit(void)
 {
-    
     I2C_Init();
     
     LedWrite(REG_SHUTDOWN,DATA_POWER_ON);
     LedWrite(REG_FRE_SET,DATA_FRE_3K);
     memset(pwmDuty,DATA_PWM_DUTY,36);
     LedPwmDutySet(0,pwmDuty,36);
-    memset(ledCtrl,DATA_CURRENT_DIV1|DATA_LED_ON,36);
+    memset(ledCtrl,DATA_CURRENT_DIV1|DATA_LED_OFF,36);
     LedSet(0,ledCtrl,36);
     LedWrite(REG_UPDATE,0x00);
 }
 
+uint8_t status_color[5]={LED_NONE,LED_GREEN,LED_BLUE,LED_RED,LED_YELLOW};
 void LedRefresh(uint8_t *state)
 {
     static uint8_t preState[6]={0};
@@ -116,9 +116,9 @@ void LedRefresh(uint8_t *state)
     {
         for(uint8_t i=0;i<6;i++)
         {
-            buf[i*3]=(state[i]&LED_BLUE)?1:0;
-            buf[i*3+1]=(state[i]&LED_GREEN)?1:0;
-            buf[i*3+2]=(state[i]&LED_RED)?1:0;
+            buf[i*3]=(status_color[state[i]]&LED_BLUE)?1:0;
+            buf[i*3+1]=(status_color[state[i]]&LED_GREEN)?1:0;
+            buf[i*3+2]=(status_color[state[i]]&LED_RED)?1:0;
         }
         LedSet(0,buf,18);
         LedWrite(REG_UPDATE,0x00);
