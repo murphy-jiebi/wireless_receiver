@@ -74,13 +74,43 @@ uint8_t ProtocolParse(uint8_t *mess,uint8_t len)
 uint8_t ProtocolPackage(uint8_t *buf,uint8_t cmd)
 {
     uint8_t len=0;
-    
+    uint8_t i=0;
     buf[FRAME_OFFSET_HEAD]=FRAME_DATA_HEAD;
     buf[FRAME_OFFSET_LEN]=12;
     buf[FRAME_OFFSET_GROUP]=groupSN;
     buf[FRAME_OFFSET_DEV]=devSN;
-    buf[FRAME_OFFSET_CMD]=cmd;
-    memcpy(&buf[FRAME_OFFSET_DATA],channelStatus,6);
+    buf[FRAME_OFFSET_CMD]=cmd|0x80;
+    switch(cmd)
+    {
+        case FRAME_DATA_CMD_DETECT:
+            memcpy(&buf[FRAME_OFFSET_DATA],channelStatus,6);
+            break;
+        case FRAME_DATA_CMD_FIRE:
+            for(i=0;i<6;i++)
+            {
+                buf[FRAME_OFFSET_DATA+i]=fireChannel[i]?0x03:channelStatus[i];
+            }
+        //    memcpy(&buf[FRAME_OFFSET_DATA],channelStatus,6);
+            break;
+        default:
+            break;
+    }
+    buf[FRAME_OFFSET_CRC]=Get_CrcXOR(buf,11);
+    
+    return 12;
+}
+
+uint8_t ProtocolPackageFire(uint8_t *buf)
+{
+    uint8_t len=0;
+    uint8_t i=0;
+    buf[FRAME_OFFSET_HEAD]=FRAME_DATA_HEAD;
+    buf[FRAME_OFFSET_LEN]=12;
+    buf[FRAME_OFFSET_GROUP]=groupSN;
+    buf[FRAME_OFFSET_DEV]=devSN;
+    buf[FRAME_OFFSET_CMD]=FRAME_DATA_CMD_FIRE|0x80;
+    
+//    memcpy(&buf[FRAME_OFFSET_DATA],channelStatus,6);
     buf[FRAME_OFFSET_CRC]=Get_CrcXOR(buf,11);
     
     return 12;

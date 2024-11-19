@@ -41,3 +41,4 @@ receiver\main.o: ..\App\Inc\lora.h
 receiver\main.o: ..\Bsp\Inc\bsp_tim.h
 receiver\main.o: ..\Task\Inc\task_ctrl.h
 receiver\main.o: ..\Bsp\Inc\24cxx.h
+receiver\main.o: ..\Task\Inc\task_com.h

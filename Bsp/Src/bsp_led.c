@@ -110,7 +110,7 @@ void LedInit(void)
 uint8_t status_color[5]={LED_NONE,LED_GREEN,LED_BLUE,LED_RED,LED_YELLOW};
 void LedRefresh(uint8_t *state)
 {
-    static uint8_t preState[6]={0};
+    static uint8_t preState[6]={0xFF,0xFF,0xFF};
     uint8_t buf[18]={0};
     if(memcmp(preState,state,6)!=0)
     {

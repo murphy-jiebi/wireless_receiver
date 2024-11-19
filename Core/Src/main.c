@@ -27,6 +27,7 @@
 #include "bsp_tim.h"
 #include "task_ctrl.h"
 #include "24cxx.h" 
+#include "task_com.h"
 
 uint8_t test=0;
 uint8_t test_buf[15]={0};
@@ -62,6 +63,8 @@ int main(void)
             LedRefresh(channelStatus);
         }
         ChannelFire(TimerGet1ms(),&flagFire,fireChannel);
+        TaskCom();
+        
         switch(test)
         {
             case 1:

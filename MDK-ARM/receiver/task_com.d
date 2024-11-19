@@ -32,3 +32,5 @@ receiver\task_com.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 receiver\task_com.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 receiver\task_com.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 receiver\task_com.o: D:\keil5\ARM\ARMCC\Bin\..\include\string.h
+receiver\task_com.o: ..\App\Inc\protocol.h
+receiver\task_com.o: ..\Bsp\Inc\bsp_usart.h

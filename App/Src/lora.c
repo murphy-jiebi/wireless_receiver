@@ -5,7 +5,7 @@
 
 extern UART_HandleTypeDef huart2;
 
-uint8_t loraSendBuf[128]={0};
+uint8_t loraSendBuf[64]={0};
 
 loraParam_typedef loraParam=
 {
@@ -16,6 +16,7 @@ loraParam_typedef loraParam=
     .wakeTime=WAKE_TIME_250MS,
     .txPower=TX_POWER_30DB,
 };
+
 void loraSendData(uint8_t *buf,uint8_t len)
 {
     HAL_UART_Transmit(&huart2,buf,len,1000);

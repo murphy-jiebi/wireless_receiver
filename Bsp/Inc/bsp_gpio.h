@@ -16,41 +16,41 @@
 #define CH_PWR_PORT         GPIOB
 #define CH_PWR_PIN          GPIO_PIN_5
 
-#define CH1_CTL_PORT        GPIOB
-#define CH1_CTL_PIN         GPIO_PIN_11
+#define CH6_CTL_PORT        GPIOB
+#define CH6_CTL_PIN         GPIO_PIN_11
 
-#define CH2_CTL_PORT        GPIOB
-#define CH2_CTL_PIN         GPIO_PIN_1
+#define CH5_CTL_PORT        GPIOB
+#define CH5_CTL_PIN         GPIO_PIN_1
 
-#define CH3_CTL_PORT        GPIOB
-#define CH3_CTL_PIN         GPIO_PIN_0
+#define CH4_CTL_PORT        GPIOB
+#define CH4_CTL_PIN         GPIO_PIN_0
 
-#define CH4_CTL_PORT        GPIOA
-#define CH4_CTL_PIN         GPIO_PIN_7
+#define CH3_CTL_PORT        GPIOA
+#define CH3_CTL_PIN         GPIO_PIN_7
 
-#define CH5_CTL_PORT        GPIOA
-#define CH5_CTL_PIN         GPIO_PIN_6
+#define CH2_CTL_PORT        GPIOA
+#define CH2_CTL_PIN         GPIO_PIN_6
 
-#define CH6_CTL_PORT        GPIOA
-#define CH6_CTL_PIN         GPIO_PIN_5
+#define CH1_CTL_PORT        GPIOA
+#define CH1_CTL_PIN         GPIO_PIN_5
 
-#define CH1_DET_PORT        GPIOA
-#define CH1_DET_PIN         GPIO_PIN_8
-
-#define CH2_DET_PORT        GPIOB
-#define CH2_DET_PIN         GPIO_PIN_15
-
-#define CH3_DET_PORT        GPIOB
-#define CH3_DET_PIN         GPIO_PIN_14
-
-#define CH4_DET_PORT        GPIOB
-#define CH4_DET_PIN         GPIO_PIN_13
+#define CH6_DET_PORT        GPIOA
+#define CH6_DET_PIN         GPIO_PIN_8
 
 #define CH5_DET_PORT        GPIOB
-#define CH5_DET_PIN         GPIO_PIN_12
+#define CH5_DET_PIN         GPIO_PIN_15
 
-#define CH6_DET_PORT        GPIOB
-#define CH6_DET_PIN         GPIO_PIN_10
+#define CH4_DET_PORT        GPIOB
+#define CH4_DET_PIN         GPIO_PIN_14
+
+#define CH3_DET_PORT        GPIOB
+#define CH3_DET_PIN         GPIO_PIN_13
+
+#define CH2_DET_PORT        GPIOB
+#define CH2_DET_PIN         GPIO_PIN_12
+
+#define CH1_DET_PORT        GPIOB
+#define CH1_DET_PIN         GPIO_PIN_10
 
 #define LORA_MO_PORT        GPIOA
 #define LORA_MO_PIN         GPIO_PIN_12
