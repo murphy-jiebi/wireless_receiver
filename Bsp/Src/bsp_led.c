@@ -75,7 +75,6 @@ void LedUpdate(void)
 
 void LedPwmDutySet(uint8_t ch,uint8_t *duty,uint8_t len)
 {
-    uint8_t i;
     if(ch)
     {
         LedWrite(REG_DUTY_CH(ch),*duty);
@@ -85,7 +84,6 @@ void LedPwmDutySet(uint8_t ch,uint8_t *duty,uint8_t len)
 }
 void LedSet(uint8_t ch,uint8_t *cmd,uint8_t len)
 {
-    uint8_t i;
     if(ch)
     {
         LedWrite(REG_LED_CTRL(ch),*cmd);
@@ -114,7 +112,12 @@ void LedRefresh(uint8_t *state)
     uint8_t buf[18]={0};
     if(memcmp(preState,state,6)!=0)
     {
-        for(uint8_t i=0;i<6;i++)
+        
+        buf[1]=(status_color[state[0]]&LED_BLUE)?1:0;
+        buf[0]=(status_color[state[0]]&LED_GREEN)?1:0;
+        buf[2]=(status_color[state[0]]&LED_RED)?1:0;
+        
+        for(uint8_t i=1;i<6;i++)
         {
             buf[i*3]=(status_color[state[i]]&LED_BLUE)?1:0;
             buf[i*3+1]=(status_color[state[i]]&LED_GREEN)?1:0;
@@ -126,3 +129,40 @@ void LedRefresh(uint8_t *state)
     }
 }
 
+void BatVoltRefreash(uint8_t volt)
+{
+    uint8_t  buf[4]={0};
+    if(volt<25)
+    {
+        buf[0]=0;
+        buf[1]=0;
+        buf[2]=0;
+        buf[3]=0;
+    }else if(volt<50)
+    {
+        buf[0]=1;
+        buf[1]=0;
+        buf[2]=0;
+        buf[3]=0;
+    }else if(volt<75)
+    {
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=0;
+        buf[3]=0;
+    }else if(volt<98)
+    {
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=1;
+        buf[3]=0;
+    }else{
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=1;
+        buf[3]=1;  
+    }
+    
+    LedWriteMulti(REG_LED_CTRL(33),buf,4);
+    LedWrite(REG_UPDATE,0x00);
+}

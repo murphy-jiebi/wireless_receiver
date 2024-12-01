@@ -2,31 +2,41 @@
 #include "delay.h" 	
 
 
-#define    SOFT_VERSION    0x01
+#define    SOFT_VERSION    (0x01)
 
 
-
-void SYS_Param_Init(void)
+void bsp_InitParam(void)
 {
 	u8 i = 20;
 	u8 result = 0;
 	
+    uint8_t temp_group=1;
+    uint8_t temp_dev=1;
+    
 	while(i--)
 	{
-		AT24CXX_Read(e2rom_addr(e2rom_flag),&result,1);
+		AT24CXX_Read(FLAG_ADDR,&result,1);
 		if(result == SOFT_VERSION)
 		{
 			break;
 		}
 		else
+        {
 			delay_ms(10);
+        }
 	}
 	if(result != SOFT_VERSION)
 	{
-//		
+        AT24CXX_WriteOneByte(FLAG_ADDR,SOFT_VERSION);
+		AT24CXX_Write(GROUP_SN_ADDR,&temp_group,1);
+        AT24CXX_Write(GROUP_DEV_ADDR,&temp_dev,1);
 	}
 	delay_ms(50);
 	
+    AT24CXX_Read(GROUP_SN_ADDR,&groupSN,1);
+    AT24CXX_Read(GROUP_DEV_ADDR,&devSN,1);
+    
+    
 }
 
 //初始化IIC接口

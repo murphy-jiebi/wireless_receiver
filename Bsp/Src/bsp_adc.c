@@ -7,7 +7,7 @@ uint32_t adcValue=0;
 
 float GetBatVol(void)
 {
-    return adcValue*3.3f/4095*1.5/0.5;
+    return adcValue*3.3f/4095*1.5/0.5+0.02f;
 }
 
 void bsp_InitAdc(void)
@@ -84,7 +84,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     hdma_adc1.Init.MemInc = DMA_MINC_ENABLE;
     hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
     hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-    hdma_adc1.Init.Mode = DMA_NORMAL;
+    hdma_adc1.Init.Mode = DMA_CIRCULAR;
     hdma_adc1.Init.Priority = DMA_PRIORITY_MEDIUM;
     if (HAL_DMA_Init(&hdma_adc1) != HAL_OK)
     {
@@ -115,4 +115,9 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     HAL_DMA_DeInit(hadc->DMA_Handle);
   }
 
+}
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
+{
+    HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adcValue, 1);
 }

@@ -34,14 +34,11 @@
 #define AT24C256					32767  
 //Mini STM32开发板使用的是24c02，所以定义EE_TYPE为AT24C02
 #define EE_TYPE 					AT24C256
-					  
-					  				  
-struct e2rom_data
-{
-	uint8_t e2rom_flag[1];
+			
+#define FLAG_ADDR                   (1)            
+#define GROUP_SN_ADDR               (10)
+#define GROUP_DEV_ADDR              (15)
 
-	
-};
 
 uint8_t  AT24CXX_ReadOneByte(uint16_t ReadAddr);									//指定地址读取一个字节
 void AT24CXX_WriteOneByte(uint16_t WriteAddr,uint8_t DataToWrite);					//指定地址写入一个字节
@@ -53,7 +50,7 @@ void AT24CXX_Read(uint16_t ReadAddr,uint8_t *pBuffer,uint16_t NumToRead);   		//
 uint8_t AT24CXX_Check(void);  														//检查器件
 void AT24CXX_Init(void); 															//初始化IIC
 			
-void SYS_Param_Init(void);
+void bsp_InitParam(void);
 	
 void IIC_Start(void);																//发送IIC开始信号
 void IIC_Stop(void);	  															//发送IIC停止信号

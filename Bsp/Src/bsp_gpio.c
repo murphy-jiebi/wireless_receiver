@@ -15,8 +15,8 @@ void bsp_InitGpio(void)
  /********************************Êä³ö********************************************************/   
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	  
-    GPIO_InitStruct.Pin = PWR_CTL_PIN;
-	HAL_GPIO_Init(PWR_CTL_PORT, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = CHG_CTL_PIN;
+	HAL_GPIO_Init(CHG_CTL_PORT, &GPIO_InitStruct);
     
     GPIO_InitStruct.Pin = CH_PWR_PIN;
 	HAL_GPIO_Init(CH_PWR_PORT, &GPIO_InitStruct);
@@ -96,7 +96,7 @@ void bsp_InitGpio(void)
         } 
     }
     
-    PWR_CTL_EN;
+    CHG_CTL_EN;
     CH_PWR_EN;
     
     LED_RST_DIS;

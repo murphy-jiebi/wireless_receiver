@@ -8,5 +8,7 @@ void LedInit(void);
 
 void LedRefresh(uint8_t *state);
 
+void BatVoltRefreash(uint8_t volt);
+
 #endif
 

@@ -5,6 +5,8 @@ TIM_HandleTypeDef htim4;
 static uint32_t cnt1ms=0;
 static uint32_t cnt1s=0;
 
+extern uint8_t INT250ms;
+
 uint32_t TimerGet1s(void)
 {
     return cnt1s;
@@ -17,7 +19,6 @@ uint32_t TimerGet1ms(void)
 void Bsp_tim4_Init(void)
 {
 
-    TIM_SlaveConfigTypeDef sSlaveConfig = {0};
     TIM_MasterConfigTypeDef sMasterConfig = {0};
 
     htim4.Instance = TIM4;
@@ -77,6 +78,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim==&htim4)
 	{
         cnt1ms++;
+        if(cnt1ms%500==0)
+        {
+            INT250ms=1;
+        }
         if(cnt1ms%1000==0)
         {
             cnt1s++;

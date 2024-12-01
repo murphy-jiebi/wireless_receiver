@@ -29,16 +29,27 @@
 #include "24cxx.h" 
 #include "task_com.h"
 
+uint8_t groupSN=1;
+uint8_t devSN=1;
+
+#define DEBUG
 uint8_t test=0;
 uint8_t test_buf[15]={0};
 uint8_t test_data=0x11;
 
+uint8_t chgstate=0;
+uint8_t state1=0;
 
+
+
+uint8_t INT250ms=0;
 uint32_t preTb1s=0;
+uint8_t channelFireflag[6]={0};
 uint8_t channelStatus[6]={0};
 uint8_t fireChannel[6]={0};
 uint8_t flagFire=0;
-
+uint8_t cnt1min=0;
+float bat=0.0f;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -49,22 +60,28 @@ int main(void)
     SystemClock_Config();
     bsp_InitGpio();
     AT24CXX_Init();
+    bsp_InitParam();
     LedInit();
     bsp_InitAdc();
     bsp_usartInit();
     LoraInit();
     Bsp_tim4_Init();
+    bat=GetBatVol();
+    BatVoltRefreash(bat/4.20f*100);
     while (1)
     {
         if(preTb1s!=TimerGet1s())
         {
             preTb1s=TimerGet1s();
-            ChannelDetect();
-            LedRefresh(channelStatus);
+            cnt1min++;
         }
+        BatLedHandle();
+        ChannelDetect();
+        LedRefresh(channelStatus);
         ChannelFire(TimerGet1ms(),&flagFire,fireChannel);
         TaskCom();
         
+        #ifdef DEBUG
         switch(test)
         {
             case 1:
@@ -79,13 +96,62 @@ int main(void)
                 memset(test_buf,0,15);
                 AT24CXX_Read(10,test_buf,15);
                 break;
+            case 4:
+                CHG_CTL_EN;
+                break;
+            case 5:
+                CHG_CTL_DIS;
+                break;
             default:
                 break;
         }
+        chgstate=READ_CHG_INT;
+        state1=READ_PWR_INT;
         test=0;
+        #endif
     }
 }
 
-
+void BatLedHandle(void)
+{
+    static uint8_t a=0;
+    static uint8_t step=0;
+    if(READ_PWR_INT)
+    {
+        if(INT250ms)
+        {
+            INT250ms=0;
+            if(READ_CHG_INT)
+            {
+                if(cnt1min>60)
+                {
+                    cnt1min=0;
+                    CHG_CTL_DIS;
+                    delay_ms(5);
+                    bat=GetBatVol();
+                    CHG_CTL_EN;
+                }
+                if(step%2)
+                {
+                    BatVoltRefreash(bat/4.20f*100);
+                }else{
+                    BatVoltRefreash(0);
+                }
+                step++;
+            }else{
+                BatVoltRefreash(100);
+            }
+        }     
+    }else{
+        a=1;
+        if(cnt1min>60)
+        {
+            cnt1min=0;
+            bat=GetBatVol();
+            BatVoltRefreash(bat/4.20f*100);
+        }
+    }
+    
+}
 
 

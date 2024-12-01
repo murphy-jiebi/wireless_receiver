@@ -31,8 +31,8 @@
 typedef enum
 {
     CH_NO_CON        =0,
-    CH_SELECT        =0x01,
-    CH_CONNECT       =0x02,
+    CH_CONNECT       =0x01,
+    CH_SELECT        =0x02,
     CH_FIRED         =0x03,
     CH_FAULT         =0x04,
 }chStatus_enum_typedef;
@@ -47,10 +47,15 @@ typedef enum
    
 }led_color_typedef;
 
+extern uint8_t groupSN;
+extern uint8_t devSN;
+
+extern uint8_t channelFireflag[];
 extern uint8_t channelStatus[];
 extern uint8_t fireChannel[];
 extern uint8_t flagFire;
 
+void BatLedHandle(void);
 
 void Error_Handler(void);
 

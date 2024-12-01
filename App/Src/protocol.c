@@ -12,8 +12,9 @@
 #define FRAME_OFFSET_DATA           0x05
 #define FRAME_OFFSET_CRC            0x0B
 
-const uint8_t groupSN=1;
-const uint8_t devSN=1;
+
+extern uint8_t groupSN;
+extern uint8_t devSN;
 
 extern uint8_t channelStatus[];
 extern uint8_t fireChannel[];
@@ -102,8 +103,6 @@ uint8_t ProtocolPackage(uint8_t *buf,uint8_t cmd)
 
 uint8_t ProtocolPackageFire(uint8_t *buf)
 {
-    uint8_t len=0;
-    uint8_t i=0;
     buf[FRAME_OFFSET_HEAD]=FRAME_DATA_HEAD;
     buf[FRAME_OFFSET_LEN]=12;
     buf[FRAME_OFFSET_GROUP]=groupSN;
@@ -115,3 +114,4 @@ uint8_t ProtocolPackageFire(uint8_t *buf)
     
     return 12;
 }
+
