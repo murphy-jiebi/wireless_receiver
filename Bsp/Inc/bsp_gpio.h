@@ -4,6 +4,9 @@
 #include "main.h" 	
 
 
+#define LED_PIN             GPIO_PIN_4
+#define LED_PORT            GPIOA
+
 #define PWR_INT_PORT        GPIOA
 #define PWR_INT_PIN         GPIO_PIN_0
 
@@ -89,6 +92,9 @@
 
 
 #define READ_LORA_AUX       ((LORA_AUX_PORT->IDR & LORA_AUX_PIN) != 0)
+
+#define LED_ON              (LED_PORT->BSRR = LED_PIN)
+#define LED_OFF             (LED_PORT->BRR = LED_PIN)
 
 #define CHG_CTL_EN          (CHG_CTL_PORT->BSRR = CHG_CTL_PIN)
 #define CHG_CTL_DIS         (CHG_CTL_PORT->BRR = CHG_CTL_PIN)

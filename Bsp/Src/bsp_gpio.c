@@ -54,6 +54,8 @@ void bsp_InitGpio(void)
     GPIO_InitStruct.Pin = LED_SDB_PIN;
 	HAL_GPIO_Init(LED_SDB_PORT, &GPIO_InitStruct);
 
+    GPIO_InitStruct.Pin = LED_PIN;
+	HAL_GPIO_Init(LED_PORT, &GPIO_InitStruct);
 /******************************** ‰»Î********************************************************/
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     
@@ -84,17 +86,17 @@ void bsp_InitGpio(void)
     GPIO_InitStruct.Pin = LORA_AUX_PIN;
 	HAL_GPIO_Init(LORA_AUX_PORT, &GPIO_InitStruct);
     
-    while(1)
-    {
-        if(!READ_PWR_INT)
-        {
-            HAL_Delay(1500);
-            if(!READ_PWR_INT)
-            {
-                break;
-            }
-        } 
-    }
+//    while(1)
+//    {
+//        if(!READ_PWR_INT)
+//        {
+//            HAL_Delay(1500);
+//            if(!READ_PWR_INT)
+//            {
+//                break;
+//            }
+//        } 
+//    }
     
     CHG_CTL_EN;
     CH_PWR_EN;

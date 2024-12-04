@@ -41,7 +41,6 @@ uint8_t chgstate=0;
 uint8_t state1=0;
 
 
-
 uint8_t INT250ms=0;
 uint32_t preTb1s=0;
 uint8_t channelFireflag[6]={0};
@@ -68,11 +67,13 @@ int main(void)
     Bsp_tim4_Init();
     bat=GetBatVol();
     BatVoltRefreash(bat/4.20f*100);
+    LED_ON;
     while (1)
     {
         if(preTb1s!=TimerGet1s())
         {
             preTb1s=TimerGet1s();
+            
             cnt1min++;
         }
         BatLedHandle();
