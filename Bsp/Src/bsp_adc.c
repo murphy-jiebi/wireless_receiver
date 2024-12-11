@@ -7,9 +7,25 @@ uint32_t adcValue=0;
 
 float GetBatVol(void)
 {
-    return adcValue*3.3f/4095*1.5/0.5+0.02f;
+    float vol=0.0f;
+    vol = adcValue*3.34f/4096;
+    vol *=3.0f;
+    return vol+0.05;
 }
 
+uint8_t GetBalPct(void)
+{
+    float vol=0.0f;
+    vol = adcValue*3.3f/4096;
+    vol *=3.0f;
+    vol+=0.05f;
+    if(vol<6.0f)
+    {
+        return 0;
+    }else{
+        return (vol-6.0f)/(8.4f-6.0f)*100;
+    } 
+}
 void bsp_InitAdc(void)
 {
     ADC_ChannelConfTypeDef sConfig = {0};

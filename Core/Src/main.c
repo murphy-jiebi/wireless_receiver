@@ -32,14 +32,15 @@
 uint8_t groupSN=1;
 uint8_t devSN=1;
 
-#define DEBUG
+#define DEBUG   0
+#if DEBUG
 uint8_t test=0;
 uint8_t test_buf[15]={0};
 uint8_t test_data=0x11;
 
 uint8_t chgstate=0;
 uint8_t state1=0;
-
+#endif
 
 uint8_t INT250ms=0;
 uint32_t preTb1s=0;
@@ -55,6 +56,7 @@ float bat=0.0f;
   */
 int main(void)
 {
+	uint8_t i,vol = 0;
     HAL_Init();
     SystemClock_Config();
     bsp_InitGpio();
@@ -65,9 +67,16 @@ int main(void)
     bsp_usartInit();
     LoraInit();
     Bsp_tim4_Init();
-    bat=GetBatVol();
-    BatVoltRefreash(bat/4.20f*100);
-    LED_ON;
+	LED_ON;
+	
+	for(i = 0x00; i < 0x05; i++)
+	{
+		delay_ms(100);
+	    vol += GetBalPct();
+	}
+	vol /= 5;
+    BatVoltRefresh(vol,0);
+    
     while (1)
     {
         if(preTb1s!=TimerGet1s())
@@ -82,7 +91,7 @@ int main(void)
         ChannelFire(TimerGet1ms(),&flagFire,fireChannel);
         TaskCom();
         
-        #ifdef DEBUG
+        #if DEBUG
         switch(test)
         {
             case 1:
@@ -98,14 +107,16 @@ int main(void)
                 AT24CXX_Read(10,test_buf,15);
                 break;
             case 4:
-                CHG_CTL_EN;
+                memset(test_buf,test_data,15);
+                loraSendData(test_buf,6);
                 break;
             case 5:
-                CHG_CTL_DIS;
+                
                 break;
             default:
                 break;
         }
+        bat=GetBatVol();
         chgstate=READ_CHG_INT;
         state1=READ_PWR_INT;
         test=0;
@@ -117,6 +128,7 @@ void BatLedHandle(void)
 {
     static uint8_t a=0;
     static uint8_t step=0;
+    static uint8_t pct=0;
     if(READ_PWR_INT)
     {
         if(INT250ms)
@@ -129,18 +141,14 @@ void BatLedHandle(void)
                     cnt1min=0;
                     CHG_CTL_DIS;
                     delay_ms(5);
-                    bat=GetBatVol();
+                    pct=GetBalPct();
                     CHG_CTL_EN;
                 }
-                if(step%2)
-                {
-                    BatVoltRefreash(bat/4.20f*100);
-                }else{
-                    BatVoltRefreash(0);
-                }
+				BatVoltRefresh(pct,step);
                 step++;
-            }else{
-                BatVoltRefreash(100);
+            }else
+			{
+                BatVoltRefresh(100,0);
             }
         }     
     }else{
@@ -148,8 +156,8 @@ void BatLedHandle(void)
         if(cnt1min>60)
         {
             cnt1min=0;
-            bat=GetBatVol();
-            BatVoltRefreash(bat/4.20f*100);
+            pct=GetBalPct();
+            BatVoltRefresh(pct,0);
         }
     }
     

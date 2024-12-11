@@ -129,40 +129,73 @@ void LedRefresh(uint8_t *state)
     }
 }
 
-void BatVoltRefreash(uint8_t volt)
+void BatVoltRefresh(uint8_t volt,uint8_t step)
 {
     uint8_t  buf[4]={0};
-    if(volt<25)
+	
+	if(step % 2)
+	{
+		if(volt<10)
+		{
+			buf[0]=0;
+			buf[1]=0;
+			buf[2]=0;
+			buf[3]=0;	
+		}
+		else if(volt<25)
+		{
+			buf[0]=1;
+			buf[1]=0;
+			buf[2]=0;
+			buf[3]=0;
+		}else if(volt<50)
+		{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=0;
+			buf[3]=0;
+		}else if(volt<80)
+		{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=1;
+			buf[3]=0;
+		}else{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=1;
+			buf[3]=1;  
+		}	
+	}
+	else
     {
-        buf[0]=0;
-        buf[1]=0;
-        buf[2]=0;
-        buf[3]=0;
-    }else if(volt<50)
-    {
-        buf[0]=1;
-        buf[1]=0;
-        buf[2]=0;
-        buf[3]=0;
-    }else if(volt<75)
-    {
-        buf[0]=1;
-        buf[1]=1;
-        buf[2]=0;
-        buf[3]=0;
-    }else if(volt<98)
-    {
-        buf[0]=1;
-        buf[1]=1;
-        buf[2]=1;
-        buf[3]=0;
-    }else{
-        buf[0]=1;
-        buf[1]=1;
-        buf[2]=1;
-        buf[3]=1;  
-    }
-    
+		if(volt<10)
+		{
+			buf[0]=1;
+			buf[1]=0;
+			buf[2]=0;
+			buf[3]=0;	
+		}
+		else if(volt<25)
+		{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=0;
+			buf[3]=0;
+		}else if(volt<50)
+		{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=1;
+			buf[3]=0;
+		}else 
+		{
+			buf[0]=1;
+			buf[1]=1;
+			buf[2]=1;
+			buf[3]=1;
+		}
+	}
     LedWriteMulti(REG_LED_CTRL(33),buf,4);
     LedWrite(REG_UPDATE,0x00);
 }

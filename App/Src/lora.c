@@ -21,6 +21,13 @@ void loraSendData(uint8_t *buf,uint8_t len)
 {
     HAL_UART_Transmit(&huart2,buf,len,1000);
 }
+
+//void LoraReadParam(void)
+//{
+//    uint8_t buf[3]={0xC3,0xC3,0xC3};
+//    loraSendData(buf,3);
+//}
+
 void LoraWriteParam(loraParam_typedef *para,uint8_t store)
 {
     loraSendBuf[0]=store?0xC0:0xC2;
@@ -50,12 +57,16 @@ void LoraInit(void)
     LORA_PWR_EN;
     LORA_MO_H;
     LORA_M1_H;
+    
     LoraWriteParam(&loraParam,0);
     
     delay_ms(1);
     LORA_MO_L;
     LORA_M1_L;
     
+    delay_ms(1);
+//    LoraReadParam();
+//    delay_ms(10);
 }
 
 

@@ -7,5 +7,7 @@ void bsp_InitAdc(void);
 
 float GetBatVol(void);
 
+uint8_t GetBalPct(void);
+
 #endif
 

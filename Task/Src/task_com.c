@@ -16,6 +16,7 @@ void TaskComLora(void)
             res=ProtocolPackage(txbuf,res);
             HAL_UART_Transmit(&huart2,txbuf,res,1000);
         }
+        usart2.usRxCount=0;
     }
 }
 void TaskComDebug(void)

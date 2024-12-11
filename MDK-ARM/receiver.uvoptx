@@ -213,7 +213,7 @@
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>cnt1min</ItemText>
+          <ItemText>cnt1min,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
@@ -224,6 +224,16 @@
           <count>13</count>
           <WinNumber>1</WinNumber>
           <ItemText>devSN</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>usart2</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>usart2Rxbuf</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

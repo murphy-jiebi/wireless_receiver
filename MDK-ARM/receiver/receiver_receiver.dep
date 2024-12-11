@@ -1,7 +1,7 @@
 Dependencies for Project 'receiver', Target 'receiver': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f103xb.s)(0x670D2D47)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o receiver\startup_stm32f103xb.o --depend receiver\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x675064BD)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\main.o --omf_browse receiver\main.crf --depend receiver\main.d)
+F (../Core/Src/main.c)(0x67592F41)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\main.o --omf_browse receiver\main.crf --depend receiver\main.d)
 I (../Core/Inc/main.h)(0x674BFC0F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66C1D4F2)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6714B58D)
@@ -37,8 +37,8 @@ I (..\Bsp\Inc\sys.h)(0x670FD709)
 I (..\Bsp\Inc\delay.h)(0x60BD914A)
 I (..\Bsp\Inc\bsp_usart.h)(0x672A34A4)
 I (..\Bsp\Inc\bsp_gpio.h)(0x67506470)
-I (..\Bsp\Inc\bsp_adc.h)(0x6714B817)
-I (..\Bsp\Inc\bsp_led.h)(0x674345AA)
+I (..\Bsp\Inc\bsp_adc.h)(0x6758051B)
+I (..\Bsp\Inc\bsp_led.h)(0x67592F27)
 I (..\App\Inc\lora.h)(0x6730537B)
 I (..\Bsp\Inc\bsp_tim.h)(0x673215B3)
 I (..\Task\Inc\task_ctrl.h)(0x673371E3)
@@ -787,8 +787,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66C1D4F2)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
-F (..\Bsp\Src\bsp_led.c)(0x6744849C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\bsp_led.o --omf_browse receiver\bsp_led.crf --depend receiver\bsp_led.d)
-I (..\Bsp\Inc\bsp_led.h)(0x674345AA)
+F (..\Bsp\Src\bsp_led.c)(0x67592F27)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\bsp_led.o --omf_browse receiver\bsp_led.crf --depend receiver\bsp_led.d)
+I (..\Bsp\Inc\bsp_led.h)(0x67592F27)
 I (../Core/Inc/main.h)(0x674BFC0F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66C1D4F2)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6714B58D)
@@ -855,8 +855,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66C1D4F2)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
-F (..\Bsp\Src\bsp_adc.c)(0x67434ACA)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\bsp_adc.o --omf_browse receiver\bsp_adc.crf --depend receiver\bsp_adc.d)
-I (..\Bsp\Inc\bsp_adc.h)(0x6714B817)
+F (..\Bsp\Src\bsp_adc.c)(0x67580EA5)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\bsp_adc.o --omf_browse receiver\bsp_adc.crf --depend receiver\bsp_adc.d)
+I (..\Bsp\Inc\bsp_adc.h)(0x6758051B)
 I (../Core/Inc/main.h)(0x674BFC0F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66C1D4F2)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6714B58D)
@@ -921,7 +921,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66C1D4F2)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
-F (..\App\Src\lora.c)(0x6734C20D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\lora.o --omf_browse receiver\lora.crf --depend receiver\lora.d)
+F (..\App\Src\lora.c)(0x6756A3A6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\lora.o --omf_browse receiver\lora.crf --depend receiver\lora.d)
 I (..\App\Inc\lora.h)(0x6730537B)
 I (../Core/Inc/main.h)(0x674BFC0F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66C1D4F2)
@@ -956,7 +956,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66C1D4F2)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
 I (..\Bsp\Inc\bsp_gpio.h)(0x67506470)
 I (..\Bsp\Inc\delay.h)(0x60BD914A)
-F (..\App\Src\protocol.c)(0x674BFC28)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\protocol.o --omf_browse receiver\protocol.crf --depend receiver\protocol.d)
+F (..\App\Src\protocol.c)(0x675826C9)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\protocol.o --omf_browse receiver\protocol.crf --depend receiver\protocol.d)
 I (..\App\Inc\protocol.h)(0x673215C9)
 I (D:\keil5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
@@ -994,7 +994,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x66C1D4F2)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66C1D4F2)
-F (..\Task\Src\task_com.c)(0x674C0471)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\task_com.o --omf_browse receiver\task_com.crf --depend receiver\task_com.d)
+F (..\Task\Src\task_com.c)(0x6758270A)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Bsp\Inc -I ..\App\Inc -I ..\Task\Inc-I.\RTE\_receiver-ID:\keil5\pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\keil5\pack\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o receiver\task_com.o --omf_browse receiver\task_com.crf --depend receiver\task_com.d)
 I (..\Task\Inc\task_com.h)(0x6734BF6D)
 I (../Core/Inc/main.h)(0x674BFC0F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66C1D4F2)

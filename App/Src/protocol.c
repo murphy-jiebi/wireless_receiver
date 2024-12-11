@@ -77,7 +77,7 @@ uint8_t ProtocolPackage(uint8_t *buf,uint8_t cmd)
     uint8_t len=0;
     uint8_t i=0;
     buf[FRAME_OFFSET_HEAD]=FRAME_DATA_HEAD;
-    buf[FRAME_OFFSET_LEN]=12;
+    buf[FRAME_OFFSET_LEN]=11;
     buf[FRAME_OFFSET_GROUP]=groupSN;
     buf[FRAME_OFFSET_DEV]=devSN;
     buf[FRAME_OFFSET_CMD]=cmd|0x80;
