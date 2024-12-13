@@ -13,6 +13,7 @@ void TaskComLora(void)
         res=ProtocolParse(usart2.pRxBuf,usart2.usRxCount);
         if(res)
         {
+            flagLedblink=1;
             res=ProtocolPackage(txbuf,res);
             HAL_UART_Transmit(&huart2,txbuf,res,1000);
         }

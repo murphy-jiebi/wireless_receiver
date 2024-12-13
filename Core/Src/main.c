@@ -42,7 +42,9 @@ uint8_t chgstate=0;
 uint8_t state1=0;
 #endif
 
+uint8_t flagLedblink=0;
 uint8_t INT250ms=0;
+uint8_t INT500ms=0;
 uint32_t preTb1s=0;
 uint8_t channelFireflag[6]={0};
 uint8_t channelStatus[6]={0};
@@ -50,6 +52,7 @@ uint8_t fireChannel[6]={0};
 uint8_t flagFire=0;
 uint8_t cnt1min=0;
 float bat=0.0f;
+uint8_t batPct=0;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -57,6 +60,7 @@ float bat=0.0f;
 int main(void)
 {
 	uint8_t i,vol = 0;
+    uint8_t ledCnt=0;
     HAL_Init();
     SystemClock_Config();
     bsp_InitGpio();
@@ -67,15 +71,15 @@ int main(void)
     bsp_usartInit();
     LoraInit();
     Bsp_tim4_Init();
-	LED_ON;
+	LED_OFF;
 	
 	for(i = 0x00; i < 0x05; i++)
 	{
 		delay_ms(100);
 	    vol += GetBalPct();
 	}
-	vol /= 5;
-    BatVoltRefresh(vol,0);
+	batPct=vol / 5;
+    BatVoltRefresh(batPct,READ_PWR_INT,READ_CHG_INT);
     
     while (1)
     {
@@ -83,9 +87,39 @@ int main(void)
         {
             preTb1s=TimerGet1s();
             
-            cnt1min++;
+            if(++cnt1min>60)
+            {
+                cnt1min=0;
+                CHG_CTL_DIS;
+                delay_ms(5);
+                batPct=GetBalPct();
+                CHG_CTL_EN;
+            }
         }
-        BatLedHandle();
+        if(INT250ms)
+        {
+            INT250ms=0;
+            if(flagLedblink)
+            {
+                if(ledCnt%2)
+                {
+                    LED_OFF;
+                }else{
+                    LED_ON;
+                }
+                ledCnt++;
+                if(ledCnt>4)
+                {
+                    flagLedblink=0;
+                    ledCnt=0;
+                }
+            }
+        } 
+        if(INT500ms)
+        {
+            INT500ms=0;
+            BatVoltRefresh(batPct,READ_PWR_INT,READ_CHG_INT);            
+        }
         ChannelDetect();
         LedRefresh(channelStatus);
         ChannelFire(TimerGet1ms(),&flagFire,fireChannel);
@@ -126,41 +160,9 @@ int main(void)
 
 void BatLedHandle(void)
 {
-    static uint8_t a=0;
-    static uint8_t step=0;
-    static uint8_t pct=0;
-    if(READ_PWR_INT)
-    {
-        if(INT250ms)
-        {
-            INT250ms=0;
-            if(READ_CHG_INT)
-            {
-                if(cnt1min>60)
-                {
-                    cnt1min=0;
-                    CHG_CTL_DIS;
-                    delay_ms(5);
-                    pct=GetBalPct();
-                    CHG_CTL_EN;
-                }
-				BatVoltRefresh(pct,step);
-                step++;
-            }else
-			{
-                BatVoltRefresh(100,0);
-            }
-        }     
-    }else{
-        a=1;
-        if(cnt1min>60)
-        {
-            cnt1min=0;
-            pct=GetBalPct();
-            BatVoltRefresh(pct,0);
-        }
-    }
-    
+
+        
+  
 }
 
 

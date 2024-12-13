@@ -54,6 +54,7 @@ extern uint8_t channelFireflag[];
 extern uint8_t channelStatus[];
 extern uint8_t fireChannel[];
 extern uint8_t flagFire;
+extern uint8_t flagLedblink;
 
 void BatLedHandle(void);
 

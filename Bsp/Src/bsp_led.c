@@ -129,73 +129,80 @@ void LedRefresh(uint8_t *state)
     }
 }
 
-void BatVoltRefresh(uint8_t volt,uint8_t step)
+void PctGetBuf(uint8_t pct,uint8_t *buf)
 {
-    uint8_t  buf[4]={0};
-	
-	if(step % 2)
-	{
-		if(volt<10)
-		{
-			buf[0]=0;
-			buf[1]=0;
-			buf[2]=0;
-			buf[3]=0;	
-		}
-		else if(volt<25)
-		{
-			buf[0]=1;
-			buf[1]=0;
-			buf[2]=0;
-			buf[3]=0;
-		}else if(volt<50)
-		{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=0;
-			buf[3]=0;
-		}else if(volt<80)
-		{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=1;
-			buf[3]=0;
-		}else{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=1;
-			buf[3]=1;  
-		}	
-	}
-	else
+    if(pct<10)
     {
-		if(volt<10)
-		{
-			buf[0]=1;
-			buf[1]=0;
-			buf[2]=0;
-			buf[3]=0;	
-		}
-		else if(volt<25)
-		{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=0;
-			buf[3]=0;
-		}else if(volt<50)
-		{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=1;
-			buf[3]=0;
-		}else 
-		{
-			buf[0]=1;
-			buf[1]=1;
-			buf[2]=1;
-			buf[3]=1;
-		}
-	}
-    LedWriteMulti(REG_LED_CTRL(33),buf,4);
-    LedWrite(REG_UPDATE,0x00);
+        buf[0]=0;
+        buf[1]=0;
+        buf[2]=0;
+        buf[3]=0;	
+    }
+    else if(pct<30)
+    {
+        buf[0]=1;
+        buf[1]=0;
+        buf[2]=0;
+        buf[3]=0;
+    }else if(pct<60)
+    {
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=0;
+        buf[3]=0;
+    }else if(pct<90)
+    {
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=1;
+        buf[3]=0;
+    }else{
+        buf[0]=1;
+        buf[1]=1;
+        buf[2]=1;
+        buf[3]=1;  
+    }	
+}
+
+uint8_t pctTS[4]={25,50,75,100};
+void BatVoltRefresh(uint8_t volt,uint8_t chgPwr,uint8_t chgStatus)
+{
+    uint8_t i=0;
+    uint8_t  buf[4]={0};
+	static uint8_t preBuf[4]={0};
+    static uint8_t step=0;
+    
+    if(chgPwr)
+    {
+        if(chgStatus)
+        {
+            for(i=0;i<4;i++)
+            {
+                if(volt>pctTS[i])
+                {
+                    buf[i]=1;
+                }else{
+                    break;
+                }
+            }
+            buf[i]=step%2;
+        }else{
+            //³äÂú
+            PctGetBuf(100,buf);
+        }
+        
+    }else{
+        PctGetBuf(volt,buf);
+        if(volt<10)
+        {
+            buf[0]=step%2;
+        }
+    }
+    step++;
+    if( memcmp(preBuf,buf,4)!=0)
+    {
+        memcpy(preBuf,buf,4);
+        LedWriteMulti(REG_LED_CTRL(33),buf,4);
+        LedWrite(REG_UPDATE,0x00);
+    }
 }
