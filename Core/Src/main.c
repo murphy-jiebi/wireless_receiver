@@ -53,6 +53,8 @@ uint8_t flagFire=0;
 uint8_t cnt1min=0;
 float bat=0.0f;
 uint8_t batPct=0;
+uint8_t firstCnt1min=0;
+uint8_t firstIn=0;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -61,6 +63,7 @@ int main(void)
 {
 	uint8_t i,vol = 0;
     uint8_t ledCnt=0;
+	uint8_t chgStatus=1;
     HAL_Init();
     SystemClock_Config();
     bsp_InitGpio();
@@ -71,22 +74,19 @@ int main(void)
     bsp_usartInit();
     LoraInit();
     Bsp_tim4_Init();
-	LED_OFF;
-	
-	for(i = 0x00; i < 0x05; i++)
-	{
-		delay_ms(100);
-	    vol += GetBalPct();
-	}
-	batPct=vol / 5;
-    BatVoltRefresh(batPct,READ_PWR_INT,READ_CHG_INT);
-    
+	  
     while (1)
     {
         if(preTb1s!=TimerGet1s())
         {
             preTb1s=TimerGet1s();
-            
+            if(++firstCnt1min<58)
+			{
+				CHG_CTL_DIS;
+                delay_ms(5);
+                batPct=GetBalPct();
+                CHG_CTL_EN;
+			}
             if(++cnt1min>60)
             {
                 cnt1min=0;
@@ -94,6 +94,7 @@ int main(void)
                 delay_ms(5);
                 batPct=GetBalPct();
                 CHG_CTL_EN;
+//				chgStatus=READ_CHG_INT;
             }
         }
         if(INT250ms)
@@ -110,6 +111,7 @@ int main(void)
                 ledCnt++;
                 if(ledCnt>4)
                 {
+					LED_OFF;
                     flagLedblink=0;
                     ledCnt=0;
                 }
@@ -118,7 +120,20 @@ int main(void)
         if(INT500ms)
         {
             INT500ms=0;
-            BatVoltRefresh(batPct,READ_PWR_INT,READ_CHG_INT);            
+			if(firstIn<11)
+			{
+				firstIn++;
+				if(firstIn%2)
+				{
+					LED_OFF;
+					BatVoltRefresh(1,0,0,0);
+				}else{
+					LED_ON;
+					BatVoltRefresh(100,0,0,0);
+				}
+			}else{
+				BatVoltRefresh(batPct,READ_PWR_INT,READ_CHG_INT,1);   
+			}            
         }
         ChannelDetect();
         LedRefresh(channelStatus);

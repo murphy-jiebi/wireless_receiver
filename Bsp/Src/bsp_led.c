@@ -113,15 +113,15 @@ void LedRefresh(uint8_t *state)
     if(memcmp(preState,state,6)!=0)
     {
         
-        buf[1]=(status_color[state[0]]&LED_BLUE)?1:0;
-        buf[0]=(status_color[state[0]]&LED_GREEN)?1:0;
-        buf[2]=(status_color[state[0]]&LED_RED)?1:0;
+        buf[1]=(status_color[state[5]]&LED_BLUE)?1:0;
+        buf[0]=(status_color[state[5]]&LED_GREEN)?1:0;
+        buf[2]=(status_color[state[5]]&LED_RED)?1:0;
         
         for(uint8_t i=1;i<6;i++)
         {
-            buf[i*3]=(status_color[state[i]]&LED_BLUE)?1:0;
-            buf[i*3+1]=(status_color[state[i]]&LED_GREEN)?1:0;
-            buf[i*3+2]=(status_color[state[i]]&LED_RED)?1:0;
+            buf[i*3]=(status_color[state[5-i]]&LED_BLUE)?1:0;
+            buf[i*3+1]=(status_color[state[5-i]]&LED_GREEN)?1:0;
+            buf[i*3+2]=(status_color[state[5-i]]&LED_RED)?1:0;
         }
         LedSet(0,buf,18);
         LedWrite(REG_UPDATE,0x00);
@@ -165,7 +165,7 @@ void PctGetBuf(uint8_t pct,uint8_t *buf)
 }
 
 uint8_t pctTS[4]={25,50,75,100};
-void BatVoltRefresh(uint8_t volt,uint8_t chgPwr,uint8_t chgStatus)
+void BatVoltRefresh(uint8_t volt,uint8_t chgPwr,uint8_t chgStatus,uint8_t en)
 {
     uint8_t i=0;
     uint8_t  buf[4]={0};
@@ -174,7 +174,7 @@ void BatVoltRefresh(uint8_t volt,uint8_t chgPwr,uint8_t chgStatus)
     
     if(chgPwr)
     {
-        if(chgStatus)
+        if(volt<90)
         {
             for(i=0;i<4;i++)
             {
@@ -193,10 +193,15 @@ void BatVoltRefresh(uint8_t volt,uint8_t chgPwr,uint8_t chgStatus)
         
     }else{
         PctGetBuf(volt,buf);
-        if(volt<10)
-        {
-            buf[0]=step%2;
-        }
+		if(volt<10)
+		{
+			if(en)
+			{
+				buf[0]=step%2;
+			}else{
+				buf[0]=0;
+			}
+		}   
     }
     step++;
     if( memcmp(preBuf,buf,4)!=0)

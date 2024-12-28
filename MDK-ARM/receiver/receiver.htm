@@ -3,7 +3,7 @@
 <title>Static Call Graph - [receiver\receiver.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image receiver\receiver.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Dec 13 23:01:33 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Dec 28 10:35:19 2024
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -521,8 +521,8 @@ Global Symbols
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT24CXX_Write
 </UL>
 
-<P><STRONG><a name="[6b]"></a>BatVoltRefresh</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, bsp_led.o(i.BatVoltRefresh))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = BatVoltRefresh &rArr; LedWriteMulti &rArr; I2C_Wait_Ack
+<P><STRONG><a name="[6b]"></a>BatVoltRefresh</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, bsp_led.o(i.BatVoltRefresh))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = BatVoltRefresh &rArr; LedWriteMulti &rArr; I2C_Wait_Ack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memcmp
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PctGetBuf
@@ -546,11 +546,11 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.BusFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[d9]"></a>ChannelDetect</STRONG> (Thumb, 310 bytes, Stack size 0 bytes, task_ctrl.o(i.ChannelDetect))
+<P><STRONG><a name="[d9]"></a>ChannelDetect</STRONG> (Thumb, 318 bytes, Stack size 0 bytes, task_ctrl.o(i.ChannelDetect))
 <BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[db]"></a>ChannelFire</STRONG> (Thumb, 276 bytes, Stack size 8 bytes, task_ctrl.o(i.ChannelFire))
+<P><STRONG><a name="[db]"></a>ChannelFire</STRONG> (Thumb, 278 bytes, Stack size 8 bytes, task_ctrl.o(i.ChannelFire))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ChannelFire
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1187,7 +1187,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedInit
 </UL>
 
-<P><STRONG><a name="[c1]"></a>LedRefresh</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, bsp_led.o(i.LedRefresh))
+<P><STRONG><a name="[c1]"></a>LedRefresh</STRONG> (Thumb, 176 bytes, Stack size 32 bytes, bsp_led.o(i.LedRefresh))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = LedRefresh &rArr; LedSet &rArr; LedWriteMulti &rArr; I2C_Wait_Ack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -1417,7 +1417,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d5]"></a>bsp_InitGpio</STRONG> (Thumb, 466 bytes, Stack size 24 bytes, bsp_gpio.o(i.bsp_InitGpio))
+<P><STRONG><a name="[d5]"></a>bsp_InitGpio</STRONG> (Thumb, 464 bytes, Stack size 24 bytes, bsp_gpio.o(i.bsp_InitGpio))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = bsp_InitGpio &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
@@ -1475,7 +1475,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoraWriteParam
 </UL>
 
-<P><STRONG><a name="[4b]"></a>main</STRONG> (Thumb, 316 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[4b]"></a>main</STRONG> (Thumb, 378 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; __NVIC_SetPriority
 </UL>
